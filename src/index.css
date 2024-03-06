@@ -261,3 +261,8 @@ h4 {
   scrollbar-width: none;
   /* Firefox */
 }
+
+/* User Info Pane */
+/* .notEmpty:valid:not(:empty) {
+  background-color: rgb(240, 239, 245);
+} */
