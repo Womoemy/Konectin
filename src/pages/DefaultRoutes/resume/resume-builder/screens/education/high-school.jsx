@@ -111,9 +111,9 @@ function HighSchool() {
     navigate("/services/resume/builder/education/");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onSectionComplete(templateData, 4);
+    await onSectionComplete(templateData, 4);
 
     delete education._id; // Remove its id
 
@@ -132,6 +132,7 @@ function HighSchool() {
           break;
         case "relevantCourses":
         case "awards":
+        case "type":
           break;
         default:
           verifyInput(education[holder], schoolRef.current, holder);

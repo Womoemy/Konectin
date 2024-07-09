@@ -40,9 +40,9 @@ const Skills = ({ data, updateResume }) => {
     setSkillList(updatedList);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSectionComplete(data, 5);
+    // await onSectionComplete(data, 5);
     navigate("/services/resume/builder/bio");
   };
 

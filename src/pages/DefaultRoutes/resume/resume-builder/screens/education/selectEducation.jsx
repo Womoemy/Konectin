@@ -29,13 +29,11 @@ function EducationOption({ title, link, image }) {
               type: "college",
             }
           : {
-              awards: [{ name: "" }],
               city: "",
               country: "",
               endMonth: "",
               schoolName: "",
               state: "",
-              relevantCourses: [{ name: "" }],
               endYear: "",
               type: "high-school",
             },

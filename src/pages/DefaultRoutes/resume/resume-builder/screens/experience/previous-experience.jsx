@@ -1,7 +1,6 @@
 import professions from "professions";
 import { useState, useRef } from "react";
 
-
 // import JobTitleInput from "../../../../../../components/jobTitleInput";
 import * as FaIcon from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -50,9 +49,9 @@ const PreviousExperience = ({ data, handleInputChange }) => {
     navigate("/services/resume/builder/");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSectionComplete(templateData, 3);
+    // await onSectionComplete(templateData, 3);
 
     delete data._id; // Remove the item id
 

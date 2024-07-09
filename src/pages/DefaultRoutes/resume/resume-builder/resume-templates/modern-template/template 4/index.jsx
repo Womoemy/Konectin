@@ -252,7 +252,7 @@ function TemplateFour(data) {
           >
             <div className="dark-m" />
             <div ref={page} className="h-max w-full page">
-              <BasicInfo data={data?.basicInfo} />
+              <BasicInfo data={data?.basicInfo} image={data?.image?.value} />
               <Contacts data={data?.basicInfo} />
               <Profile data={data?.bio} />
               <Education data={data} />

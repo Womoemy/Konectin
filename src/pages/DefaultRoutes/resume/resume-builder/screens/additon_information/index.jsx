@@ -1,7 +1,16 @@
-import { Outlet, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  Outlet,
+  NavLink,
+  useLocation,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
+import { BsPlus } from "react-icons/bs";
 import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
-import AddSection from "../../../../../../components/select/AddSection";
+
 import Awards from "./Awards";
 import Selector from "./Selector";
 import Languages from "./Languages";
@@ -11,6 +20,7 @@ import Projects from "./Projects";
 
 const AdditionInformation = ({ data, updateResume }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleAddSection = (sectionName) => {
     const newData = { ...data };
@@ -53,7 +63,7 @@ const AdditionInformation = ({ data, updateResume }) => {
 
     // Update the state with the new data
     updateResume(newData);
-    navigate(`/resume/builder/add_information/${sectionName}`);
+    // navigate(`/resume/builder/add-information/${sectionName}`);
   };
 
   const handleInputChange = (value, section, index, field) => {
@@ -82,17 +92,37 @@ const AdditionInformation = ({ data, updateResume }) => {
                 <p className="text-secondary-500 text-sm font-medium tracking-wide mt-3 mb-5">
                   Optional
                 </p>
-                <Outlet />
-                <AddSection
-                  onChange={handleAddSection}
-                  options={[
+                <div className="flex gap-3 items-center">
+                  {[
                     "awards",
                     "certificates",
                     "hobbies",
                     "languages",
                     "projects",
-                  ]}
-                />
+                  ].map((item) => (
+                    <NavLink
+                      to={`/services/resume/builder/add-information/${item}`}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "px-4 py-2 capitalize text-white bg-secondary-500 rounded flex items-center"
+                          : "px-4 py-2 capitalize text-neutral-100 bg-neutral-600 rounded flex items-center"
+                      }
+                    >
+                      {item}
+                    </NavLink>
+                  ))}
+                </div>
+                <Outlet />
+
+                {pathname.split("/")[5] !== null && (
+                  <div
+                    onClick={() => handleAddSection(pathname.split("/")[5])}
+                    className="flex items-center gap-2 text-primary-600 cursor-pointer font-bold mt-6"
+                  >
+                    <BsPlus className="bg-primary-600 text-lg rounded-full text-white" />
+                    Add section
+                  </div>
+                )}
               </div>
 
               <div className="max-lg:hidden w-1/2">
@@ -138,6 +168,10 @@ const AdditionInformation = ({ data, updateResume }) => {
           element={
             <Projects data={data} handleInputChange={handleInputChange} />
           }
+        />
+        <Route
+          path="*"
+          element={<Navigate to="/services/resume/builder/add-information" />}
         />
       </Route>
     </Routes>

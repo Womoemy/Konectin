@@ -256,6 +256,22 @@ function TemplateThree(data) {
                 .three-modern .mt-4 {
                   margin-top: 1rem/* 16px */;
                 }
+
+                .three-modern .flex {
+                  display: flex;
+                }
+
+                .three-modern .gap-4 {
+                  gap: 16px;
+                }
+
+                .three-modern .image {
+                  border-radius: 100%;
+                  width: 4rem;
+                  height: 4rem;
+                  object-fit: cover;
+                }
+
                 `}
             </style>
           </div>
@@ -266,7 +282,7 @@ function TemplateThree(data) {
           >
             <div ref={page} className="w-full page">
               <div className="temp-head">
-                <BasicInfo data={data?.basicInfo} />
+                <BasicInfo data={data?.basicInfo} image={data?.image?.value} />
                 <Contacts data={data?.basicInfo} />
               </div>
               <div className="section mt-4 h-max">

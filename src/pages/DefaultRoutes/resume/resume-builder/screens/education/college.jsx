@@ -145,10 +145,10 @@ function CollegeForm() {
     navigate("/services/resume/builder/education/");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    onSectionComplete(templateData, 3);
+    // await onSectionComplete(templateData, 3);
 
     const formHolder = Object.keys(education);
 
@@ -162,6 +162,7 @@ function CollegeForm() {
           verifyInput(education[holder], errorHolder, holder);
           break;
         case "current":
+        case "type":
           break;
         case "startMonth":
         case "startYear":

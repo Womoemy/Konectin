@@ -1,8 +1,4 @@
-import { useTemplateContext } from "../../../../../../../middleware/resume";
-
-function BasicInfo({ data }) {
-  const { templateData } = useTemplateContext();
-
+function BasicInfo({ data, image }) {
   return (
     <section className="section-top text-center">
       <style>{`
@@ -26,9 +22,9 @@ function BasicInfo({ data }) {
       `}</style>
       <div className="basiInfo-section">
         <div>
-          {templateData.image.value && (
+          {image && (
             <img
-              src={templateData.image.value}
+              src={image}
               alt="Profile"
               className="rounded-full w-16 h-16 object-cover"
             />

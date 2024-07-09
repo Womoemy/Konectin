@@ -40,7 +40,7 @@ const ResumeUpload = lazy(() =>
 );
 
 const ResumeReview = lazy(() =>
-  import("./pages/DefaultRoutes/resume/resume-builder/resume-review")
+  import("./pages/DefaultRoutes/resume/resume-review")
 );
 
 const Landing = lazy(() => import("./pages/DefaultRoutes/landing"));
@@ -117,6 +117,11 @@ function App() {
               element={<HireTalent />}
             />
             <Route path="/services/resume" element={<ResumeBuilder />} />
+
+            <Route
+              path="/services/resume/review/*"
+              element={<ResumeReview />}
+            />
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
@@ -164,7 +169,6 @@ function App() {
           </Route>
 
           <Route path="/services/resume/upload/*" element={<ResumeUpload />} />
-          <Route path="/services/resume/review/*" element={<ResumeReview />} />
         </Route>
       </Routes>
     </BrowserRouter>
