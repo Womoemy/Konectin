@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 import BasicInformation from "./basicinfo";
 import EmploymentExperience from "./experience";
@@ -27,47 +27,59 @@ function Builder() {
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!templateData || user === null) {
-      navigate("/services/resume/ai");
-    } else if (user._id === (null || undefined)) {
-      setTemplateData({
-        completed: {
-          basic_info: false,
-          work_history: false,
-          education: false,
-          skills: false,
-          bio: false,
-        },
-        basicInfo: {
-          city: "",
-          country: "",
-          email: "",
-          firstName: "",
-          lastName: "",
-          phoneNumber: "",
-          phoneCode: "",
-          profession: "",
-          state: "",
-          zipCode: "",
-        },
-        theme: {
-          color: "blue",
-          font: "",
-        },
-        currentEditedJob: 0,
-        currentEditedEducation: 0,
-        jobExperience: [],
-        education: [],
-        skills: [],
-        additionalInformation: {},
-        bio: "",
-        selectedTemplate: "",
-        currentStage: 0,
-      });
-      navigate("/services/resume/ai/template-selector");
-    }
-  }, [templateData, navigate, user]);
+  // useEffect(() => {
+  //   if (!templateData || user === null) {
+  //     navigate("/services/resume/ai");
+  //   } else if (user._id === (null || undefined)) {
+  //     setTemplateData({
+  //       completed: {
+  //         basic_info: false,
+  //         work_history: false,
+  //         education: false,
+  //         skills: false,
+  //         bio: false,
+  //       },
+  //       basicInfo: {
+  //         city: "",
+  //         country: "",
+  //         email: "",
+  //         firstName: "",
+  //         lastName: "",
+  //         phoneNumber: "",
+  //         phoneCode: "",
+  //         profession: "",
+  //         profileUrl: "",
+  //         state: "",
+  //         zipCode: "",
+  //       },
+  //       theme: {
+  //         color: "blue",
+  //         font: {
+  //           family: "",
+  //           size: {
+  //             heading: "",
+  //             paragraph: "",
+  //           },
+  //           weight: "normal",
+  //         },
+  //       },
+  //       image: {
+  //         show: false,
+  //         value: "",
+  //       },
+  //       currentEditedJob: 0,
+  //       currentEditedEducation: 0,
+  //       jobExperience: [],
+  //       education: [],
+  //       skills: [],
+  //       additionalInformation: {},
+  //       bio: "",
+  //       selectedTemplate: { name: "", id: "", themeSet: [] },
+  //       currentStage: 0,
+  //     });
+  //     navigate("/services/resume/ai/template-selector");
+  //   }
+  // }, [templateData, navigate, user]);
 
   const component_list = [
     {
@@ -92,7 +104,7 @@ function Builder() {
     },
     {
       element: AdditionInformation,
-      link: "/add_information/*",
+      link: "/add-information/*",
     },
     {
       element: Preview,
@@ -140,6 +152,8 @@ function Builder() {
             />
           );
         })}
+
+        <Route path="*" element={<Navigate to="/services/resume/builder" />} />
       </Routes>
     </div>
   );

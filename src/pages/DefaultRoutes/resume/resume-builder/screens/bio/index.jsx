@@ -24,7 +24,7 @@ const Bio = ({ data, onInputChange }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (data.bio.length <= 30) {
@@ -32,8 +32,8 @@ const Bio = ({ data, onInputChange }) => {
       return;
     }
 
-    onSectionComplete(data, 6);
-    navigate("/services/resume/builder/add_information");
+    // await onSectionComplete(data, 6);
+    navigate("/services/resume/builder/add-information");
   };
 
   return (

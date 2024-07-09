@@ -1,16 +1,8 @@
-import { useTemplateContext } from "../../../../../middleware/resume";
 import { artisticTemplates, modernTemplates } from "./data";
 
 function SelectedTemplates({ data }) {
-  const { templateData } = useTemplateContext();
+  const [templateType, templateIndex] = data?.selectedTemplate.id.split("_");
 
-  // if (!templateData?.selectedTemplate) {
-  //   window.location.href = "/resume/ai";
-  //   return;
-  // }
-
-  const [templateType, templateIndex] =
-    templateData?.selectedTemplate.split("_");
   const [ExactTemplate] =
     templateType === "modern"
       ? modernTemplates.filter((_, index) => index === templateIndex - 1)

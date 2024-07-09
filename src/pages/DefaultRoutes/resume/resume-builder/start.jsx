@@ -58,17 +58,35 @@ const StartBuilder = () => {
           firstName: "",
           lastName: "",
           phoneNumber: "",
+          phoneCode: "",
           profession: "",
+          profileUrl: "",
           state: "",
           zipCode: "",
+        },
+        theme: {
+          color: "blue",
+          font: {
+            family: "",
+            size: {
+              heading: "",
+              paragraph: "",
+            },
+            weight: "normal",
+          },
+        },
+        image: {
+          show: false,
+          value: "",
         },
         currentEditedJob: 0,
         currentEditedEducation: 0,
         jobExperience: [],
         education: [],
         skills: [],
+        additionalInformation: {},
         bio: "",
-        selectedTemplate: "",
+        selectedTemplate: { name: "", id: "", themeSet: [] },
         currentStage: 0,
       })
     );

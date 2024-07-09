@@ -40,10 +40,9 @@ function ResumeLeftbar() {
     { route: "/skills", icon: skill, label: "Skills" },
     { route: "/bio", icon: bio, label: "Bio" },
     {
-      route: "/finalize",
+      route: "/add-information",
       icon: finalize,
       label: "Finalize",
-      options: [{ label: "Add Section" }],
     },
   ];
 

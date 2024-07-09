@@ -36,7 +36,7 @@ function ResponsibilityField({ data, handleInputChange }) {
             apiKey={editorKey}
             onInit={(_, editor) => {
               editorRef.current = editor;
-              handleInputChange("workDesc", data.workDesc);
+              handleInputChange("workDesc", data?.workDesc);
               setLoading(false);
             }}
             init={{
@@ -56,7 +56,7 @@ function ResponsibilityField({ data, handleInputChange }) {
               placeholder: "Work Responsibilities/Functions",
             }}
             initialValue=""
-            value={data.workDesc ? data.workDesc : ""}
+            value={data?.workDesc ? data.workDesc : ""}
             onEditorChange={handleEditorChange}
           />
 
