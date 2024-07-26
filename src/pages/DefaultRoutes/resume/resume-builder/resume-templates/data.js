@@ -3,12 +3,13 @@ import {
   TemplateTwo,
   TemplateThree,
   TemplateFour,
+  TemplateFive,
 } from "./modern-template";
 import {
   TemplateOneA,
-  TemplateTwoA,
-  TemplateThreeA,
-  TemplateFourA,
+  // TemplateTwoA,
+  // TemplateThreeA,
+  // TemplateFourA,
 } from "./artistic-templates";
 
 export const modernTemplates = [
@@ -41,6 +42,14 @@ export const modernTemplates = [
     about: "",
     themeColors: ["white"],
     id: "modern_4",
+  },
+  {
+    element: TemplateFive,
+    name: "Summit",
+    about:
+      "With Summit, your leadership qualities and extensive accomplishments are presented with elegance and clarity, making it ideal for top-tier professionals seeking a refined and impactful resume.",
+    themeColors: ["#000000", "#3E6AF2"],
+    id: "modern_5",
   },
 ];
 
