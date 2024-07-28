@@ -6,9 +6,9 @@ import {
 } from "./modern-template";
 import {
   TemplateOneA,
-  TemplateTwoA,
-  TemplateThreeA,
-  TemplateFourA,
+  // TemplateTwoA,
+  // TemplateThreeA,
+  // TemplateFourA,
 } from "./artistic-templates";
 
 export const modernTemplates = [
