@@ -1,10 +1,12 @@
-import React from "react";
 import Form1 from "./step1/form1";
 import Form2 from "./step2/form2";
 import Form3 from "./step3/form3";
-import Form4 from "./step4/form4";
 
-const Step5 = ({ handleChange, values }) => {
+const Step4 = ({ handleChange, values }) => {
+  const handleCheckboxChange = () => {
+    handleChange("mouConfirmed", !values.mouConfirmed);
+  };
+
   return (
     <div>
       <div>
@@ -18,7 +20,18 @@ const Step5 = ({ handleChange, values }) => {
             <Form1 handleChange={handleChange} values={values} />
             <Form2 handleChange={handleChange} values={values} />
             <Form3 handleChange={handleChange} values={values} />
-            <Form4 handleChange={handleChange} values={values} />
+            <label className="flex items-start">
+              <input
+                type="checkbox"
+                checked={values.mouConfirmed}
+                onChange={handleCheckboxChange}
+                className="form-checkbox h-5 w-5 text-purple-600"
+              />
+              <span className="ml-2 text-gray-700 text-xs">
+                By ticking this box, you confirm that you have read and
+                acknowledged the Memorandum of Understanding (MOU).
+              </span>
+            </label>
           </div>
         </div>
       </div>
@@ -26,4 +39,4 @@ const Step5 = ({ handleChange, values }) => {
   );
 };
 
-export default Step5;
+export default Step4;
