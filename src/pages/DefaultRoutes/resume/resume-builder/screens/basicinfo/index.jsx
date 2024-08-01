@@ -93,7 +93,7 @@ const BasicInformation = ({ data, onInputChange }) => {
           errorHolder = allErrMsg.filter(
             (ref) => ref.current.getAttribute("for") === holder
           );
-          console.log(holder, errorHolder);
+          // console.log(holder, errorHolder);
           errorHolder = errorHolder[0].current;
           verifyInput(data.basicInfo[holder], errorHolder, holder);
           break;

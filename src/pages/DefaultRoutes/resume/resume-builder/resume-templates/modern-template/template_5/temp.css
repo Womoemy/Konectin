@@ -1,0 +1,121 @@
+.modern-5 .head-content {
+  margin: 44px 40px 28px;
+}
+.modern-5 h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+.modern-5 h2 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.modern-5 h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 15px;
+}
+
+.modern-5 h4 {
+}
+.modern-5 p,
+.modern-5 a,
+.modern-5 span,
+.modern-5 ul li {
+  color: #212121;
+}
+.modern-5 .top-head {
+  height: 20px;
+}
+.modern-5 .main-content {
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  width: 71%;
+  padding: 0 30px 0 24px;
+}
+
+.modern-5 .side-content {
+  display: flex;
+  flex-direction: column;
+  width: 27%;
+}
+
+.modern-5 .side-content h2,
+.modern-5 .side-content span {
+  padding: 16px 20px;
+}
+
+.modern-5 .side-content span {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.modern-5 .sub-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.modern-5 .sub-section > div,
+.modern-5 .sub-section > p {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  margin-top: 4px;
+}
+.modern-5 .sub-section > div:first-child,
+.modern-5 .sub-section > p:first-child {
+  margin-top: 0;
+}
+
+.modern-5 .list-disc div ul,
+.modern-5 .list-disc {
+  list-style-type: disc;
+  margin: 0;
+  padding: 0;
+}
+
+.modern-5 .list-none div ul,
+.modern-5 .list-none {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modern-5 .mt-4 {
+  margin-top: 1rem /* 16px */;
+}
+
+.modern-5 .mt-2 {
+  margin-top: 0.5rem /* 8px */;
+}
+
+.modern-5 .pt-2 {
+  padding-top: 0.5rem /* 8px */;
+}
+
+.modern-5 .pt-4 {
+  padding-top: 16px;
+}
+.modern-5 .ps-4 {
+  padding-left: 1rem /* 16px */;
+}
+
+.modern-5 .contacts {
+  display: -webkit-box;
+  display: flex;
+  width: 100%;
+}
+
+.modern-5 .contacts svg {
+  display: block;
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
+.modern-5 .separated-section .section {
+  margin-bottom: 15px;
+}
