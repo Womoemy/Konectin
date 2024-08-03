@@ -6,12 +6,12 @@
 } */
 
 header {
-  z-index: 100;
   background-color: white;
   width: 100%;
 }
 
 header.fixed {
+  z-index: 100;
   box-shadow: 0 -15px 30px rgb(122, 122, 122);
 }
 

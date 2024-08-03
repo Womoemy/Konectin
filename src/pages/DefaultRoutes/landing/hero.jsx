@@ -48,7 +48,7 @@ function Hero() {
 
   return (
     <section className="bg-neutral-1000">
-      <div className="w-full mx-auto max-w-screen-2xl flex flex-col items-center md:flex-row md:justify-between gap-10 lg:gap-12 py-16 px-2 xxs:px-4 lg:px-16">
+      <div className="w-full mx-auto max-w-screen-2xl flex flex-col md:flex-row md:justify-between gap-10 lg:gap-12 py-16 px-2 xxs:px-4 lg:px-16">
         <div className="space-y-2.5 md:space-y-16 md:w-7/12">
           <div className="flex relative flex-col gap-y-2 md:gap-y-4">
             <span className="absolute -top-4 -left-4">

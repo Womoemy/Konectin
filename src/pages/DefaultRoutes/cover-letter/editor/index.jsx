@@ -74,13 +74,29 @@ function CoverEditor() {
             blob,
             `${CVData.details.fullName} ${CVData.details.companyName}.docx`
           );
-
-          setLoading(false);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
     } else {
       toast.error("Wait for preview to show before downloading");
     }
+  };
+
+  const handleCreateNewLetter = async () => {
+    setLoading(true);
+
+    // create new one
+    await axios
+      .post(`${primaryURL}/letter`, CVData)
+      .then((res) => {
+        setCVData({ ...res.data.data });
+        navigate(`/services/cover-letter/editor?id=${res.data.data._id}`);
+      })
+      .catch((err) => {
+        toast.error("Encountered Error. Try Again");
+        console.log(err);
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -102,7 +118,10 @@ function CoverEditor() {
               />
             </div>
 
-            <button className="bg-primary-600 py-2 px-6 text-white rounded flex items-center gap-1">
+            <button
+              onClick={handleCreateNewLetter}
+              className="bg-primary-600 py-2 px-6 text-white rounded flex items-center gap-1"
+            >
               <CiIcons.CiCirclePlus size="1.5rem" />
               <span className="text-sm">Create New</span>
             </button>
