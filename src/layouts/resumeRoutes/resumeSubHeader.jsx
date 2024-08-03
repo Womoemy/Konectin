@@ -74,7 +74,7 @@ function ResumeSubHeader() {
           pathname === "/resume/builder/download"))
         ? "bg-primary-500"
         : locationNo >= link.no
-        ? "bg-neutral-500"
+        ? "bg-primary-500"
         : "bg-neutral-400"
     }`;
 
@@ -95,7 +95,7 @@ function ResumeSubHeader() {
                       pathname === "/resume/builder/preview")
                       ? "text-primary-500 font-semibold"
                       : locationNo >= link.no
-                      ? "text-neutral-500 font-semibold"
+                      ? "text-primary-500 font-semibold"
                       : "text-neutral-400 font-medium"
                   }`}
                 >
@@ -106,8 +106,8 @@ function ResumeSubHeader() {
                         pathname === "/resume/builder/preview")
                         ? "bg-primary-500"
                         : locationNo >= link.no
-                        ? "text-neutral-500 border-neutral-500 border-2"
-                        : "text-neutral-400 border-neutral-400 border"
+                        ? "text-primary-500 border-primary-500 border-2"
+                        : "text-neutral-400 border-neutral-400 border-2"
                     }`}
                   >
                     {completed[link.text.split(" ").join("_")] ? (
@@ -145,14 +145,6 @@ function ResumeSubHeader() {
                 link.no <= links.length - 1
                   ? "flex items-center gap-2 text-sm"
                   : ""
-              } ${
-                completed[link.text.split(" ").join("_")] ||
-                (link.text === "finalize" &&
-                  pathname === "/resume/builder/preview")
-                  ? "text-primary-500 font-semibold"
-                  : locationNo >= link.no
-                  ? "text-neutral-500 font-semibold"
-                  : "text-neutral-400 font-medium"
               }`}
             >
               <span
@@ -161,10 +153,10 @@ function ResumeSubHeader() {
                   (link.text === "finalize" &&
                     (pathname === "/resume/builder/preview" ||
                       pathname === "/resume/builder/download"))
-                    ? "bg-primary-500"
+                    ? "bg-primary-500 font-semibold"
                     : locationNo >= link.no
-                    ? "text-neutral-500 border-neutral-500 border-2"
-                    : "text-neutral-400 border-neutral-400 inactive"
+                    ? "text-primary-500 border-primary-500 font-semibold border-2"
+                    : "text-neutral-500 border-neutral-500 border-2 inactive"
                 }`}
               >
                 {completed[link.text.split(" ").join("_")] ? (
@@ -179,8 +171,8 @@ function ResumeSubHeader() {
                     completed[link.text.split(" ").join("_")]
                       ? "bg-primary-500"
                       : locationNo >= link.no
-                      ? "bg-neutral-500"
-                      : "bg-neutral-400 inactive"
+                      ? "bg-primary-500"
+                      : "bg-neutral-500 inactive"
                   }`}
                 />
               )}

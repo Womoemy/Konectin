@@ -30,59 +30,59 @@ function Builder() {
 
   const { templateData, onInputChange, setTemplateData } = useTemplateContext();
 
-  // useEffect(() => {
-  //   if (!templateData || user === null) {
-  //     navigate("/services/resume/ai");
-  //   } else if (user._id === (null || undefined)) {
-  //     setTemplateData({
-  //       completed: {
-  //         basic_info: false,
-  //         work_history: false,
-  //         education: false,
-  //         skills: false,
-  //         bio: false,
-  //       },
-  //       basicInfo: {
-  //         city: "",
-  //         country: "",
-  //         email: "",
-  //         firstName: "",
-  //         lastName: "",
-  //         phoneNumber: "",
-  //         phoneCode: "",
-  //         profession: "",
-  //         profileUrl: "",
-  //         state: "",
-  //         zipCode: "",
-  //       },
-  //       theme: {
-  //         color: "blue",
-  //         font: {
-  //           family: "",
-  //           size: {
-  //             heading: "",
-  //             paragraph: "",
-  //           },
-  //           weight: "normal",
-  //         },
-  //       },
-  //       image: {
-  //         show: false,
-  //         value: "",
-  //       },
-  //       currentEditedJob: 0,
-  //       currentEditedEducation: 0,
-  //       jobExperience: [],
-  //       education: [],
-  //       skills: [],
-  //       additionalInformation: {},
-  //       bio: "",
-  //       selectedTemplate: { name: "", id: "", themeSet: [] },
-  //       currentStage: 0,
-  //     });
-  //     navigate("/services/resume/ai/template-selector");
-  //   }
-  // }, [templateData, navigate, user]);
+  useEffect(() => {
+    if (!templateData || user === null) {
+      navigate("/services/resume/ai");
+    } else if (user._id === (null || undefined)) {
+      setTemplateData({
+        completed: {
+          basic_info: false,
+          work_history: false,
+          education: false,
+          skills: false,
+          bio: false,
+        },
+        basicInfo: {
+          city: "",
+          country: "",
+          email: "",
+          firstName: "",
+          lastName: "",
+          phoneNumber: "",
+          phoneCode: "",
+          profession: "",
+          profileUrl: "",
+          state: "",
+          zipCode: "",
+        },
+        theme: {
+          color: "blue",
+          font: {
+            family: "",
+            size: {
+              heading: "",
+              paragraph: "",
+            },
+            weight: "normal",
+          },
+        },
+        image: {
+          show: false,
+          value: "",
+        },
+        currentEditedJob: 0,
+        currentEditedEducation: 0,
+        jobExperience: [],
+        education: [],
+        skills: [],
+        additionalInformation: {},
+        bio: "",
+        selectedTemplate: { name: "", id: "", themeSet: [] },
+        currentStage: 0,
+      });
+      navigate("/services/resume/ai/template-selector");
+    }
+  }, [templateData, navigate, user]);
 
   const component_list = [
     {
