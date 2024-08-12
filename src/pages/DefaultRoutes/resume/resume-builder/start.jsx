@@ -1,11 +1,15 @@
 import { useState } from "react";
 import * as FaIcon from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useTemplateContext } from "../../../../middleware/resume";
+import { useAuthContext } from "../../../../middleware/auth";
 
 const StartBuilder = () => {
+  const { user } = useAuthContext();
+  const { templateData, setTemplateData } = useTemplateContext();
+
   const [popUp, setPopUp] = useState(false);
-  const { jobExperience, basicInfo } =
-    JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
+  const { jobExperience, basicInfo } = templateData || "";
 
   const links = [
     "/services/resume/builder",
@@ -17,16 +21,15 @@ const StartBuilder = () => {
     "/services/resume/builder/education",
     "/services/resume/builder/skills",
     "/services/resume/builder/bio",
-    "/services/resume/builder/download",
+    "/services/resume/builder/add-information/awards",
+    "/services/resume/builder/preview",
   ];
 
   const navigate = useNavigate();
 
   const handleContinueEdit = () => {
-    const { currentStage } =
-      JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
-    const { token } =
-      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
+    const { currentStage } = templateData || "";
+    const { token } = user || "";
 
     if (!token) {
       handleAfresh();
@@ -41,55 +44,52 @@ const StartBuilder = () => {
   };
 
   const handleAfresh = () => {
-    localStorage.setItem(
-      "konectin-profiler-data-template",
-      JSON.stringify({
-        completed: {
-          basic_info: false,
-          work_history: false,
-          education: false,
-          skills: false,
-          bio: false,
-        },
-        basicInfo: {
-          city: "",
-          country: "",
-          email: "",
-          firstName: "",
-          lastName: "",
-          phoneNumber: "",
-          phoneCode: "",
-          profession: "",
-          profileUrl: "",
-          state: "",
-          zipCode: "",
-        },
-        theme: {
-          color: "blue",
-          font: {
-            family: "",
-            size: {
-              heading: "",
-              paragraph: "",
-            },
-            weight: "normal",
+    setTemplateData({
+      completed: {
+        basic_info: false,
+        work_history: false,
+        education: false,
+        skills: false,
+        bio: false,
+      },
+      basicInfo: {
+        city: "",
+        country: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        phoneCode: "",
+        profession: "",
+        profileUrl: "",
+        state: "",
+        zipCode: "",
+      },
+      theme: {
+        color: "blue",
+        font: {
+          family: "",
+          size: {
+            heading: "",
+            paragraph: "",
           },
+          weight: "normal",
         },
-        image: {
-          show: false,
-          value: "",
-        },
-        currentEditedJob: 0,
-        currentEditedEducation: 0,
-        jobExperience: [],
-        education: [],
-        skills: [],
-        additionalInformation: {},
-        bio: "",
-        selectedTemplate: { name: "", id: "", themeSet: [] },
-        currentStage: 0,
-      })
-    );
+      },
+      image: {
+        show: false,
+        value: "",
+      },
+      currentEditedJob: 0,
+      currentEditedEducation: 0,
+      jobExperience: [],
+      education: [],
+      skills: [],
+      additionalInformation: {},
+      bio: "",
+      selectedTemplate: { name: "", id: "", themeSet: [] },
+      currentStage: 0,
+    });
 
     navigate("/services/resume/ai");
   };

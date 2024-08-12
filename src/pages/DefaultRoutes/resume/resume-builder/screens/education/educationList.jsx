@@ -148,8 +148,8 @@ const EducationList = ({ data }) => {
       <div className="mt-6">
         <NavigationButton
           back={goBack}
-          cont={() => {
-            onSectionComplete(templateData);
+          cont={async () => {
+            await onSectionComplete(templateData, 4);
             navigate("/services/resume/builder/skills");
           }}
         />

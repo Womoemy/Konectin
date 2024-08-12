@@ -41,6 +41,11 @@ const useTemplateData = () => {
         profileUrl: "",
         state: "",
         zipCode: "",
+        expertise: {
+          id: 0,
+          name: "",
+          text: "",
+        },
       },
       theme: {
         color: "blue",

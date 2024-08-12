@@ -112,7 +112,10 @@ function Faq() {
                     <p>{value.head}</p>
                     <p className="text-sm max-md:mb-4">{value.answer}</p>
                     {value.link && (
-                      <Link className="bg-primary-500 px-3 py-2 w-fit text-white text-sm rounded">
+                      <Link
+                        to={value.link}
+                        className="bg-primary-500 px-3 py-2 w-fit text-white text-sm rounded"
+                      >
                         Learn more
                       </Link>
                     )}

@@ -1,23 +1,15 @@
-import { useState, useEffect, useRef } from "react";
-import { GetCountries } from "react-country-state-city/dist/cjs";
+import { Country } from "country-state-city";
+import { useState, useRef } from "react";
 import { verifyInput } from "../../pages/DefaultRoutes/resume/resume-builder/screens/verification";
 
 function CountryInput({ setCode, handleChange, country, setCountryId }) {
-  const [countriesList, setCountriesList] = useState([]);
+  const [countriesList, setCountriesList] = useState(Country.getAllCountries());
   const [showCountry, setShowCountry] = useState(false);
   const errorMessage = useRef(null);
 
-  useEffect(() => {
-    GetCountries().then((result) => {
-      setCountriesList(result);
-    });
-  }, []);
-
   const handleCountryInput = (input) => {
     if (countriesList.length === 0) {
-      GetCountries().then((result) => {
-        setCountriesList(result);
-      });
+      setCountriesList(Country.getAllCountries());
     }
 
     setShowCountry(true);
@@ -71,8 +63,8 @@ function CountryInput({ setCode, handleChange, country, setCountryId }) {
                 key={index}
                 onClick={() => {
                   handleSelectChange(item.name);
-                  setCountryId(item.id);
-                  setCode && setCode(`${item.phone_code}`);
+                  setCountryId(item.isoCode);
+                  setCode && setCode(`${item.phonecode}`);
                   setShowCountry((prev) => !prev);
                 }}
               >

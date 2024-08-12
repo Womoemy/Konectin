@@ -12,15 +12,17 @@ import NavigationButton from "../navigationButton";
 import SelectedTemplates from "../../resume-templates";
 
 import Awards from "./Awards";
-import Selector from "./Selector";
-import Languages from "./Languages";
 import Hobbies from "./Hobbies";
-import Certification from "./Certification";
 import Projects from "./Projects";
+import Languages from "./Languages";
+import Certification from "./Certification";
+import { useTemplateContext } from "../../../../../../middleware/resume";
+import { onSectionComplete } from "../verification";
 
 const AdditionInformation = ({ data, updateResume }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { setTemplateData } = useTemplateContext();
 
   const handleAddSection = (sectionName) => {
     const newData = { ...data };
@@ -63,28 +65,44 @@ const AdditionInformation = ({ data, updateResume }) => {
 
     // Update the state with the new data
     updateResume(newData);
-    // navigate(`/resume/builder/add-information/${sectionName}`);
   };
 
   const handleInputChange = (value, section, index, field) => {
-    // Copy the existing state to avoid mutating it directly
-    const newData = { ...data };
-    // Update the specific field for the given section and index
-    newData.additionalInformation[section][index][field] = value;
-    // Update the state with the new data
-    updateResume(newData);
+    setTemplateData((prev) => ({
+      ...prev,
+      additionalInformation: {
+        ...prev.additionalInformation,
+        [section]: prev.additionalInformation[section].map((sectionData, id) =>
+          id === index ? { ...sectionData, [field]: value } : sectionData
+        ),
+      },
+    }));
+  };
+
+  const handleRemove = (section, index) => {
+    const duplicateSection = data.additionalInformation[section];
+    duplicateSection.splice(index, 1);
+
+    setTemplateData((prev) => ({
+      ...prev,
+      additionalInformation: {
+        ...prev.additionalInformation,
+        [section]: duplicateSection,
+      },
+    }));
   };
 
   const handleSubmit = () => {
-    navigate("/resume/builder/preview");
+    onSectionComplete(data, 6);
+    navigate("/services/resume/builder/preview");
   };
 
   return (
     <Routes>
       <Route
         element={
-          <div className="max-w-6xl mx-auto ">
-            <div className=" flex flex-col mb-4 lg:flex-row items-start justify-between self-center gap-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col mb-4 lg:flex-row items-start justify-between self-center gap-10 min-h-[60vh]">
               <div className=" w-full">
                 <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
                   Additional Information
@@ -92,7 +110,7 @@ const AdditionInformation = ({ data, updateResume }) => {
                 <p className="text-secondary-500 text-sm font-medium tracking-wide mt-3 mb-5">
                   Optional
                 </p>
-                <div className="flex gap-3 items-center">
+                <div className="flex gap-3 items-center flex-wrap">
                   {[
                     "awards",
                     "certificates",
@@ -101,18 +119,21 @@ const AdditionInformation = ({ data, updateResume }) => {
                     "projects",
                   ].map((item) => (
                     <NavLink
+                      key={item}
                       to={`/services/resume/builder/add-information/${item}`}
                       className={({ isActive }) =>
                         isActive
-                          ? "px-4 py-2 capitalize text-white bg-secondary-500 rounded flex items-center"
-                          : "px-4 py-2 capitalize text-neutral-100 bg-neutral-600 rounded flex items-center"
+                          ? "px-4 py-2 max-sm:text-sm capitalize text-white bg-primary-500 rounded flex items-center"
+                          : "px-4 py-2 max-sm:text-sm capitalize text-neutral-100 bg-neutral-600 rounded flex items-center"
                       }
                     >
                       {item}
                     </NavLink>
                   ))}
                 </div>
-                <Outlet />
+                <div className="max-h-screen overflow-y-auto my-8 flex flex-col gap-6">
+                  <Outlet />
+                </div>
 
                 {pathname.split("/")[5] !== null && (
                   <div
@@ -134,44 +155,67 @@ const AdditionInformation = ({ data, updateResume }) => {
               </div>
             </div>
             <NavigationButton
-              back={() => navigate("/resume/ai/template-selector")}
+              back={() => navigate("/services/resume/builder/skills")}
               cont={handleSubmit}
             />
           </div>
         }
       >
-        <Route path="/" element={<Selector data={data} />} />
         <Route
           path="/awards"
-          element={<Awards data={data} handleInputChange={handleInputChange} />}
+          element={
+            <Awards
+              data={data}
+              handleInputChange={handleInputChange}
+              handleRemove={handleRemove}
+            />
+          }
         />
         <Route
           path="/languages"
           element={
-            <Languages data={data} handleInputChange={handleInputChange} />
+            <Languages
+              data={data}
+              handleInputChange={handleInputChange}
+              handleRemove={handleRemove}
+            />
           }
         />
         <Route
           path="/hobbies"
           element={
-            <Hobbies data={data} handleInputChange={handleInputChange} />
+            <Hobbies
+              data={data}
+              handleInputChange={handleInputChange}
+              handleRemove={handleRemove}
+            />
           }
         />
         <Route
           path="/certificates"
           element={
-            <Certification data={data} handleInputChange={handleInputChange} />
+            <Certification
+              data={data}
+              handleInputChange={handleInputChange}
+              handleRemove={handleRemove}
+            />
           }
         />
         <Route
           path="/projects"
           element={
-            <Projects data={data} handleInputChange={handleInputChange} />
+            <Projects
+              data={data}
+              handleInputChange={handleInputChange}
+              handleRemove={handleRemove}
+            />
           }
         />
         <Route
           path="*"
-          element={<Navigate to="/services/resume/builder/add-information" />}
+          element={
+            <Navigate to="/services/resume/builder/add-information/awards" />
+          }
         />
       </Route>
     </Routes>

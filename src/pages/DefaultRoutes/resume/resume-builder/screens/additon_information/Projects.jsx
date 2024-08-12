@@ -1,12 +1,12 @@
-function Projects({ data, handleInputChange }) {
+function Projects({ data, handleInputChange, handleRemove }) {
   return (
     data.additionalInformation?.projects?.length >= 1 &&
     data.additionalInformation?.projects.map((entry, index) => (
       <div
-        key={entry.title + index}
-        className="bg-white border rounded-xl border-neutral-500 py-8 px-12 my-8"
+        key={"projects" + index}
+        className="bg-white border rounded-xl border-neutral-500 py-6 px-6 sm:py-8 sm:px-12"
       >
-        <div className="font-bold mb-4 text-neutral-300 ">Projects</div>
+        <div className="font-bold mb-4 text-neutral-300">Projects</div>
 
         <div className="flex flex-col">
           <input
@@ -77,6 +77,13 @@ function Projects({ data, handleInputChange }) {
             }
             placeholder="Brief Description"
           />
+        </div>
+
+        <div
+          onClick={() => handleRemove("projects", index)}
+          className="text-white bg-red-500 py-2 px-6 rounded w-fit text-sm cursor-pointer"
+        >
+          Remove
         </div>
       </div>
     ))

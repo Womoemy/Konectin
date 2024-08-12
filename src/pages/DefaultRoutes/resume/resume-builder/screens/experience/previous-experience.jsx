@@ -32,7 +32,7 @@ const PreviousExperience = ({ data, handleInputChange }) => {
 
   const handleBack = () => {
     // if the array contains more than one object it goes to the job activities page and set the array back to the normal otherwise goes to the basicInfo page
-    if (Object.keys(data.jobExperience).length >= 2) {
+    if (templateData.jobExperience.length >= 2) {
       if (data.workDesc.length <= 28) {
         templateData.jobExperience.splice(data.jobExperience.length - 1, 1);
 
@@ -49,9 +49,9 @@ const PreviousExperience = ({ data, handleInputChange }) => {
     navigate("/services/resume/builder/");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // await onSectionComplete(templateData, 3);
+    onSectionComplete(templateData, 3);
 
     delete data._id; // Remove the item id
 
@@ -114,7 +114,7 @@ const PreviousExperience = ({ data, handleInputChange }) => {
               showSearch
             />
 
-            <div className="flex flex-col">
+            <div className="flex flex-col mt-6">
               <input
                 type="text"
                 id="company"
@@ -174,10 +174,9 @@ const PreviousExperience = ({ data, handleInputChange }) => {
               {/* Start Month */}
               <DateSelector
                 monthPicker
-                handleDataChange={(name, value) => {
-                  console.log(name, value);
-                  handleInputChange(name, value);
-                }}
+                handleDataChange={(name, value) =>
+                  handleInputChange(name, value)
+                }
                 id="startMonth"
                 year={data?.startYear}
                 month={data?.startMonth}

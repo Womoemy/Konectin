@@ -24,9 +24,9 @@ export default function Pricing() {
     {
       popularity: "",
       tier: "One-time Gold",
-      discount: 40,
-      oldPrice: 2,
-      price: 2,
+      discount: null,
+      oldPrice: null,
+      price: 5,
       duration: "month",
       desc: "For two to four individuals who want to learn about our product",
       options: [
@@ -42,10 +42,10 @@ export default function Pricing() {
   const businessData = [
     {
       popularity: "most popular",
-      tier: "One-time Silver",
+      tier: "Recurring Silver",
       discount: null,
       oldPrice: null,
-      price: 2,
+      price: 8,
       duration: "month",
       desc: "For growing businesses and startups to make hiring process easier",
       options: [
@@ -58,10 +58,10 @@ export default function Pricing() {
     },
     {
       popularity: "",
-      tier: "One-time Gold",
-      discount: 40,
-      oldPrice: 2,
-      price: 2,
+      tier: "Recurring Gold",
+      discount: null,
+      oldPrice: null,
+      price: 10,
       duration: "month",
       desc: "For big companies and large enterprises to make hiring process easier",
       options: [
@@ -80,14 +80,14 @@ export default function Pricing() {
           Simple, Transparent{" "}
           <span className="text-secondary-600">Pricing</span>
         </h4>
-        <p className="md:text-center w-11/12 md:w-9/12 ">
+        <p className="md:text-center w-11/12 md:w-9/12">
           At Konectin, we believe in providing value for your investment. Our
           Manual Resume Review service is designed to give you the competitive
           edge you need in your job search. Here's how our pricing works:.
         </p>
       </div>
 
-      <div className="flex flex-col items-center gap-7 md:flex-row justify-between">
+      <div className="flex flex-col gap-8 md:flex-row justify-between">
         {userData.map((item, index) => (
           <PricingCard
             key={index}
@@ -146,13 +146,13 @@ export function PricingCard({
     <div
       onMouseEnter={() => setOnHover(true)}
       onMouseLeave={() => setOnHover(false)}
-      className={`h-[648px] w-10/12 md:w-72 bg-no-repeat bg-right rounded-2xl py-11 px-6 ${
+      className={`w-full md:w-72 bg-no-repeat bg-right rounded-2xl py-11 px-6 ${
         onHover ? "md:scale-110" : ""
       }`}
       style={{
         backgroundImage: `url(${pricingCardBg})`,
         backgroundColor: bgColor,
-        boxShadow: "0px 40.74px 32.98px 0px #5243C24B",
+        boxShadow: "0px 20px 20px 0px #5243C24B",
       }}
     >
       <div className="h-full rounded-2xl w-full items-center flex flex-col gap-14">

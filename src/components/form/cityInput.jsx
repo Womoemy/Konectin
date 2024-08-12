@@ -1,37 +1,43 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { verifyInput } from "../../pages/DefaultRoutes/resume/resume-builder/screens/verification";
+import { City } from "country-state-city";
 
 function CityInput({ countryId, stateId, handleChange, city }) {
-  // const [cityList, setCityList] = useState([]);
-  // const [showCity, setShowCity] = useState(false);
+  const [cityList, setCityList] = useState(
+    stateId
+      ? City.getCitiesOfState(countryId, stateId)
+      : City.getCitiesOfCountry(countryId)
+  );
+  const [showCity, setShowCity] = useState(false);
   const errorMessage = useRef(null);
 
   const handleCityInput = (input) => {
-    // setShowCity(true);
-    // GetCity(countryId, stateId).then((result) => {
-    //   const filtered = result.filter((city) =>
-    //     city.name.toLowerCase().startsWith(input.toLowerCase())
-    //   );
+    setShowCity(true);
 
-    //   if (filtered.length >= 0) {
-    //     setCityList(filtered);
-    //   }
-    // });
+    const filtered = (
+      stateId
+        ? City.getCitiesOfState(countryId, stateId)
+        : City.getCitiesOfCountry(countryId)
+    ).filter((city) => city.name.toLowerCase().startsWith(input.toLowerCase()));
+
+    if (filtered.length >= 0) {
+      setCityList(filtered);
+    }
 
     handleChange("city", input);
 
     verifyInput(input, errorMessage.current, "city");
   };
 
-  // const handleSelectChange = (name) => {
-  //   handleChange("city", name);
-  //   verifyInput(name, errorMessage.current, "city");
-  // };
+  const handleSelectChange = (name) => {
+    handleChange("city", name);
+    verifyInput(name, errorMessage.current, "city");
+  };
 
   return (
     <div id="city" className="input-container relative z-10">
       <div
-        // onClick={() => setShowCity((prev) => !prev)}
+        onClick={() => setShowCity((prev) => !prev)}
         className="cursor-pointer flex flex-col gap-2 w-full"
       >
         <div className="flex items-center">
@@ -43,6 +49,7 @@ function CityInput({ countryId, stateId, handleChange, city }) {
             placeholder="Enter City"
             onChange={(e) => handleCityInput(e.target.value)}
             onInput={(e) => handleCityInput(e.target.value)}
+            onBlur={() => setTimeout(() => setShowCity(false), 300)}
           />
         </div>
         <label
@@ -52,7 +59,7 @@ function CityInput({ countryId, stateId, handleChange, city }) {
           ref={errorMessage}
         ></label>
       </div>
-      {/* {showCity && city?.length >= 3 && (
+      {showCity && (
         <div className="absolute flex flex-col bg-primary-600 text-white left-0 border overflow-y-auto max-h-[30vh] h-fit top-full w-full">
           {cityList.map((item, index) => (
             <div
@@ -67,7 +74,7 @@ function CityInput({ countryId, stateId, handleChange, city }) {
             </div>
           ))}
         </div>
-      )} */}
+      )}
     </div>
   );
 }

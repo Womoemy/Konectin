@@ -42,7 +42,7 @@ const Skills = ({ data, updateResume }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // await onSectionComplete(data, 5);
+    await onSectionComplete(data, 5);
     navigate("/services/resume/builder/bio");
   };
 

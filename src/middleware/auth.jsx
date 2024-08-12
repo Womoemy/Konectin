@@ -198,7 +198,13 @@ const useAuth = () => {
       })
       .catch((err) => {
         loader(false);
-        setError(err.response.data.message);
+        if (err.message) {
+          setError(err.message);
+        } else if (err.response) {
+          setError(err?.response?.data?.message);
+        } else {
+          setError("Error Encountered");
+        }
       });
   };
 

@@ -22,8 +22,8 @@ const BasicInformation = ({ data, onInputChange }) => {
   } = data?.basicInfo;
 
   const [code, setCode] = useState("");
-  const [countryId, setCountryId] = useState(0);
-  const [stateId, setStateId] = useState(0);
+  const [countryId, setCountryId] = useState("");
+  const [stateId, setStateId] = useState("");
 
   // Input Validation Error Reference
   const firstNameErrMsg = useRef(null);
@@ -72,7 +72,7 @@ const BasicInformation = ({ data, onInputChange }) => {
   };
 
   const handleSubmit = () => {
-    // onSectionComplete(data, 2);
+    onSectionComplete(data, 2);
 
     const formHolder = Object.keys(data.basicInfo);
 
@@ -89,11 +89,12 @@ const BasicInformation = ({ data, onInputChange }) => {
           errorHolder = document.getElementById(`${holder}Error`);
           verifyInput(data.basicInfo[holder], errorHolder, holder);
           break;
+        case "expertise":
+          break;
         default:
           errorHolder = allErrMsg.filter(
             (ref) => ref.current.getAttribute("for") === holder
           );
-          console.log(holder, errorHolder);
           errorHolder = errorHolder[0].current;
           verifyInput(data.basicInfo[holder], errorHolder, holder);
           break;

@@ -1,10 +1,13 @@
 import DatePicker from "react-multi-date-picker";
 
-function Awards({ data, handleInputChange }) {
+function Awards({ data, handleInputChange, handleRemove }) {
   return (
-    data.additionalInformatio?.awards?.length >= 1 &&
-    data.additionalInformatio?.awards.map((entry, index) => (
-      <div className="bg-white border rounded-xl border-neutral-500 py-8 px-12 my-8">
+    data.additionalInformation?.awards?.length >= 1 &&
+    data.additionalInformation?.awards.map((entry, index) => (
+      <div
+        key={"awards" + index}
+        className="bg-white border rounded-xl border-neutral-500 py-6 px-6 sm:py-8 sm:px-12"
+      >
         <div className="font-bold mb-4 text-neutral-300 ">Awards</div>
 
         <div className="flex flex-col">
@@ -69,6 +72,13 @@ function Awards({ data, handleInputChange }) {
             placeholder="Description"
             style={{ height: "100px" }}
           />
+        </div>
+
+        <div
+          onClick={() => handleRemove("awards", index)}
+          className="text-white bg-red-500 py-2 px-6 rounded w-fit text-sm cursor-pointer"
+        >
+          Remove
         </div>
       </div>
     ))
