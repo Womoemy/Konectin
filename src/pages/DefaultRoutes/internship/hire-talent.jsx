@@ -56,11 +56,12 @@ const HireTalent = () => {
 
     const form = new FormData();
     const duplicateData = { ...formData };
+    duplicateData.phoneNumber = `0${duplicateData.phoneNumber}`;
 
     delete duplicateData.currentStep;
 
     for (const key in duplicateData) {
-      form.append(key, formData[key]);
+      form.append(key, duplicateData[key]);
     }
 
     try {

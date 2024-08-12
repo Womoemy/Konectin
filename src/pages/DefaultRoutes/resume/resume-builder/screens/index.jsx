@@ -1,7 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FaRegEye } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import BasicInformation from "./basicinfo";
 import EmploymentExperience from "./experience";
@@ -23,6 +29,7 @@ import PreviewTemplate from "../../../../../components/resume/resumeRightSide/pr
 
 function Builder() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { user } = useAuthContext();
   const [preview, setPreview] = useState(false);
 
@@ -135,15 +142,17 @@ function Builder() {
 
   return (
     <div className="px-4 sm:px-6 md:px-0 md:w-[calc(90%_-_88px)] md:mx-auto">
-      <div className="relative md:hidden">
-        <div
-          className="absolute cursor-pointer right-0 -top-4 bg-black w-9 h-9 rounded-full flex items-center justify-center"
-          onClick={() => setPreview(true)}
-        >
-          <FaRegEye className="text-white" />
+      {pathname !== "/services/resume/builder/preview" && (
+        <div className="relative md:hidden">
+          <div
+            className="absolute cursor-pointer right-0 -top-4 bg-black w-9 h-9 rounded-full flex items-center justify-center"
+            onClick={() => setPreview(true)}
+          >
+            <FaRegEye className="text-white" />
+          </div>
+          {preview && <PreviewTemplate setPreview={setPreview} />}
         </div>
-        {preview && <PreviewTemplate setPreview={setPreview} />}
-      </div>
+      )}
       {currentModule === 0 && <WelcomeWalkthrough />}
       {currentModule === 3 && <TipsWalkthrough />}
       {currentModule === 5 && <DownloadWalkthrough />}

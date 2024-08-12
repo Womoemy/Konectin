@@ -157,7 +157,7 @@ function CollegeForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // await onSectionComplete(templateData, 3);
+    await onSectionComplete(templateData, 4);
 
     const formHolder = Object.keys(education);
 

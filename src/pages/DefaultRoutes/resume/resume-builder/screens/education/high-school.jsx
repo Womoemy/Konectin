@@ -91,7 +91,7 @@ function HighSchool() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // await onSectionComplete(templateData, 4);
+    await onSectionComplete(templateData, 4);
 
     delete education._id; // Remove its id
 

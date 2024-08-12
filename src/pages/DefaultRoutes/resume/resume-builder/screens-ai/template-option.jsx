@@ -1,4 +1,3 @@
-import { template_images } from "../../../../../assets/resume";
 import { useTemplateContext } from "../../../../../middleware/resume";
 
 // Import Swiper styles
@@ -11,11 +10,10 @@ import * as FaIcon from "react-icons/fa";
 import axios from "axios";
 import { konectinIcon } from "../../../../../assets";
 import { loginForm } from "../../../../sign/signData";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { onSectionComplete } from "../screens/verification";
 
 const TemplateOption = ({ sectionName, sectionType }) => {
-  const [customTemplate, setCustomTemplate] = useState({
+  const customTemplate = {
     basicInfo: {
       city: "",
       country: "Indonesia",
@@ -86,7 +84,7 @@ const TemplateOption = ({ sectionName, sectionType }) => {
     additionalInformation: {},
     bio: "See for yourself how Konectin can transform your job application. Check out samples of professional resumes that have landed users interviews with top companies.",
     currentStage: 0,
-  });
+  };
 
   const url = import.meta.env.VITE_CLIENT_SERVER_URL;
   const { templateData, setTemplateData } = useTemplateContext();
@@ -119,42 +117,35 @@ const TemplateOption = ({ sectionName, sectionType }) => {
         }));
 
         navigate("/services/resume/builder");
-      });
+      })
+      .catch(() => setSelectedTemplate(""));
   }
 
-  const handleSelect = (value) => {
-    // const { currentStage, selectedTemplate } = templateData;
-    // const { _id } =
-    //   JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
+  const handleSelect = async (value) => {
+    const { currentStage, selectedTemplate } = templateData;
+    const { _id } =
+      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
 
     setSelectedTemplate(value);
 
-    // Remove this after the testing
-    setTemplateData((prev) => ({
-      ...prev,
-      selectedTemplate: value,
-    }));
+    if (_id === undefined) {
+      setPopUp(true);
+    } else if (selectedTemplate.id !== "") {
+      // if coming from other section
+      setTemplateData((prev) => ({
+        ...prev,
+        selectedTemplate: value,
+      }));
 
-    navigate("/services/resume/builder");
+      await onSectionComplete(
+        { ...templateData, selectedTemplate: value },
+        currentStage
+      );
 
-    // if (_id === undefined) {
-    //   setPopUp(true);
-    // } else if (selectedTemplate.id !== "") {
-    //   // if coming from other section
-    //   setTemplateData((prev) => ({
-    //     ...prev,
-    //     selectedTemplate: value,
-    //   }));
-
-    //   onSectionComplete(
-    //     { ...templateData, selectedTemplate: value },
-    //     currentStage
-    //   );
-
-    //   navigate("/services/resume/builder");
-    // } else {
-    //   createResume(_id);
-    // }
+      navigate("/services/resume/builder");
+    } else {
+      createResume(_id);
+    }
   };
 
   const handleSubmit = async (data) => {

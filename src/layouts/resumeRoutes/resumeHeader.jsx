@@ -111,6 +111,7 @@ function ResumeHeader() {
           </div>
         </nav>
       </nav>
+
       <ResumeSubHeader />
     </header>
   );

@@ -17,6 +17,7 @@ import Projects from "./Projects";
 import Languages from "./Languages";
 import Certification from "./Certification";
 import { useTemplateContext } from "../../../../../../middleware/resume";
+import { onSectionComplete } from "../verification";
 
 const AdditionInformation = ({ data, updateResume }) => {
   const navigate = useNavigate();
@@ -64,7 +65,6 @@ const AdditionInformation = ({ data, updateResume }) => {
 
     // Update the state with the new data
     updateResume(newData);
-    // navigate(`/resume/builder/add-information/${sectionName}`);
   };
 
   const handleInputChange = (value, section, index, field) => {
@@ -93,7 +93,8 @@ const AdditionInformation = ({ data, updateResume }) => {
   };
 
   const handleSubmit = () => {
-    navigate("/resume/builder/preview");
+    onSectionComplete(data, 6);
+    navigate("/services/resume/builder/preview");
   };
 
   return (
@@ -154,7 +155,7 @@ const AdditionInformation = ({ data, updateResume }) => {
               </div>
             </div>
             <NavigationButton
-              back={() => navigate("/resume/ai/template-selector")}
+              back={() => navigate("/services/resume/builder/skills")}
               cont={handleSubmit}
             />
           </div>

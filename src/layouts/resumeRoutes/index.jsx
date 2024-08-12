@@ -8,6 +8,7 @@ import { BuilderBg, konectinLogo } from "../../assets";
 import { useWalkthrough } from "../../middleware/walkthrough";
 import LeftSidebarWalkthrough from "../../components/resume/walkthrough/leftSidebarWalkthrough";
 import RightSidebarWalkthrough from "../../components/resume/walkthrough/rightSidebarWalkthrough";
+import Header from "../header";
 
 function ResumeRoutes() {
   const { pathname } = useLocation();
@@ -15,14 +16,18 @@ function ResumeRoutes() {
 
   return (
     <>
-      {pathname.split("/")[3] === "builder" && <ResumeHeader />}
+      {pathname.split("/")[3] === "builder" ? <ResumeHeader /> : <Header />}
       <div className="flex relative builder-main justify-center">
-        {currentModule === 2 && <LeftSidebarWalkthrough />}
-        <div className="absolute top-0 left-0 bottom-0 z-40 group pt-[85px] transition-all duration-500 w-14 hover:w-56 bg-white overflow-hidden hidden md:block text-sm">
-          {pathname.split("/")[3] === "builder" && <ResumeLeftbar />}
-        </div>
+        {pathname.split("/")[3] === "builder" && (
+          <>
+            {currentModule === 2 && <LeftSidebarWalkthrough />}
+            <div className="absolute top-0 left-0 bottom-0 z-40 group pt-[85px] transition-all duration-500 w-14 hover:w-56 bg-white overflow-hidden hidden md:block text-sm">
+              <ResumeLeftbar />
+            </div>
+          </>
+        )}
         <main
-          className={`min-h-screen ${
+          className={`min-h-[77vh] ${
             pathname.split("/")[3] === "builder" ? "pt-12" : "pt-[134px]"
           }`}
           style={{
@@ -45,13 +50,18 @@ function ResumeRoutes() {
             <Outlet />
           </Suspense>
         </main>
-
-        {currentModule === 4 && <RightSidebarWalkthrough />}
-        <div className="absolute top-0 right-0 bottom-0 z-50 bg-white group pt-20 hidden md:block transition-all duration-500 w-14 hover:w-56 overflow-hidden text-sm">
-          {pathname.split("/")[3] === "builder" && <ResumeRightbar />}
-        </div>
+        {pathname.split("/")[3] === "builder" && (
+          <>
+            {currentModule === 4 && <RightSidebarWalkthrough />}
+            <div className="absolute top-0 right-0 bottom-0 z-50 bg-white group pt-20 hidden md:block transition-all duration-500 w-14 hover:w-56 overflow-hidden text-sm">
+              <ResumeRightbar />
+            </div>
+          </>
+        )}
       </div>
-      <div className="max-md:hidden">
+      <div
+        className={pathname.split("/")[3] === "builder" ? "max-md:hidden" : ""}
+      >
         <ResumeFooter />
       </div>
     </>

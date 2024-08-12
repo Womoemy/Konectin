@@ -139,7 +139,7 @@ const JobActivities = () => {
                 <div
                   className={`text-neutral-400 text-xs ${
                     showMore === index ? "line-clamp-none" : "line-clamp-4"
-                  } job-desc mt-3`}
+                  } job-desc my-3`}
                 >
                   <div
                     dangerouslySetInnerHTML={{
@@ -147,24 +147,26 @@ const JobActivities = () => {
                     }}
                   />
                 </div>
-                <button
-                  onClick={() =>
-                    setShowMore((prev) => (prev === index ? -1 : index))
-                  }
-                  className="text-secondary-400 text-xs font-extralight flex items-center mt-4"
-                >
-                  {showMore === index ? (
-                    <>
-                      Show less
-                      <FaCaretUp className="ml-1" size="0.5rem" />
-                    </>
-                  ) : (
-                    <>
-                      Show more
-                      <FaCaretDown className="ml-1" size="0.5rem" />
-                    </>
-                  )}
-                </button>
+                {data.workDesc.length >= 400 && (
+                  <button
+                    onClick={() =>
+                      setShowMore((prev) => (prev === index ? -1 : index))
+                    }
+                    className="text-secondary-400 text-xs font-extralight flex items-center"
+                  >
+                    {showMore === index ? (
+                      <>
+                        Show less
+                        <FaCaretUp className="ml-1" size="0.5rem" />
+                      </>
+                    ) : (
+                      <>
+                        Show more
+                        <FaCaretDown className="ml-1" size="0.5rem" />
+                      </>
+                    )}
+                  </button>
+                )}
               </div>
             </section>
           ))}
