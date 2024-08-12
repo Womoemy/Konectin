@@ -3,9 +3,10 @@ import * as BsIcon from "react-icons/bs";
 import { createResume, uploadResume } from "../../../../assets";
 import StartBuilder from "./start";
 import { useNavigate } from "react-router";
-import { parseJwt } from "../../../../middleware/auth";
+import { parseJwt, useAuthContext } from "../../../../middleware/auth";
 import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useTemplateContext } from "../../../../middleware/resume";
 
 const BuilderOption = ({
   title,
@@ -51,6 +52,8 @@ const BuilderOption = ({
 const Options = () => {
   const [choice, setChoice] = useState("");
   const [editable, setEditable] = useState(false);
+  const { user } = useAuthContext();
+  const { templateData } = useTemplateContext();
   const navigate = useNavigate();
 
   const handleChoice = (choice) => {
@@ -62,10 +65,8 @@ const Options = () => {
   };
 
   useEffect(() => {
-    const { currentStage } =
-      JSON.parse(localStorage.getItem("konectin-profiler-data-template")) || "";
-    const { token } =
-      JSON.parse(localStorage.getItem("konectin-profiler-user")) || "";
+    const { currentStage } = templateData || "";
+    const { token } = user || "";
     // Do not delete this code... Should be used when the user prompt is meant to be once
     // const prompted = JSON.parse(
     //   sessionStorage.getItem("konectin-profiler-recent-prompt")
@@ -99,12 +100,12 @@ const Options = () => {
     } else {
       setEditable(true);
     }
-  }, []);
+  }, [user, templateData]);
 
   return editable ? (
     <StartBuilder />
   ) : (
-    <section className="w-11/12 h-full mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8">
+    <section className="w-11/12 h-full mx-auto max-w-screen-xl flex flex-col justify-center items-center gap-8 py-20 mt-36">
       <h1 className="text-2xl md:text-3xl lg:text-4xl text-center leading-tight font-semibold md:leading-snug">
         Ready to take your career to the next level?
       </h1>

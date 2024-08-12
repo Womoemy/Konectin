@@ -20,6 +20,7 @@ function LeftSidebarWalkthrough() {
       document.body.classList.remove("modal-open");
     };
   }, []);
+
   return (
     <div className="fixed inset-0 z-[100] ">
       <div className="w-16 absolute left-0  top-0  h-20 bg-black bg-opacity-40 " />

@@ -7,7 +7,6 @@ import ProtectedRoutes from "./pages/ProtectedRoutes";
 
 import { AuthProvider } from "./middleware/auth";
 
-
 const TemplateProvider = lazy(() =>
   import("./middleware/resume").then((module) => ({
     default: module.TemplateProvider,
@@ -145,13 +144,6 @@ function App() {
           </Route>
 
           {/* Resume Builder Routes */}
-          <Route element={<ResumeRoutes />}>
-            <Route
-              path="/services/resume/options"
-              element={<ResumeOptions />}
-            />
-          </Route>
-
           <Route
             element={
               <TemplateProvider>
@@ -163,6 +155,10 @@ function App() {
               </TemplateProvider>
             }
           >
+            <Route
+              path="/services/resume/options"
+              element={<ResumeOptions />}
+            />
             <Route path="/services/cover-letter/*" element={<Coverletter />} />
             <Route path="/services/resume/ai/*" element={<AIStarter />} />
             <Route path="/services/resume/builder/*" element={<Builder />} />

@@ -9,13 +9,19 @@ import professions from "professions";
 const Profession = ({ data }) => {
   const { setTemplateData } = useTemplateContext();
   const [error, setError] = useState("");
-  const [selectedProfession, setSelectedProfession] = useState("");
+  const [selectedProfession, setSelectedProfession] = useState(
+    data.profession ?? ""
+  );
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!data.firstName || !data.lastName) {
       navigate("/services/resume/ai/");
+    }
+
+    if (!data.expertise) {
+      navigate("/services/resume/ai/level");
     }
   }, [navigate, data]);
 
@@ -26,6 +32,7 @@ const Profession = ({ data }) => {
       setError("Please enter a profession");
       return;
     }
+
     navigate("/services/resume/ai/template-selector");
   };
 
@@ -54,16 +61,13 @@ const Profession = ({ data }) => {
         />
       </p>
 
-      <form
-        onSubmit={handleSubmit}
-        className="flex position relative items-center min-w-[320px] max-w-[722px]"
-      >
+      <form className="flex position relative items-center min-w-[320px] max-w-[722px]">
         <CustomSelect
           onChange={handleSelect}
           value={selectedProfession}
           options={professions}
         />
-        <p className="absolute -bottom-5 text-sm text-error-500">{error}</p>
+
         <button
           onClick={handleSubmit}
           className="absolute right-4 bg-primary-500 text-white rounded-md px-6 py-1 text-sm"
@@ -71,6 +75,7 @@ const Profession = ({ data }) => {
           Continue
         </button>
       </form>
+      <p className="absolute -bottom-5 text-sm text-error-500">{error}</p>
     </>
   );
 };

@@ -16,6 +16,8 @@ function ResponsibilityField({ data, handleInputChange }) {
     handleInputChange("workDesc", content);
     if (content.length <= 29) {
       setErrorMessage("A good work description must be at least 30 words");
+    } else {
+      setErrorMessage("");
     }
   };
 

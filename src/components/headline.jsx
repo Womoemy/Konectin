@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { megaSpeakerIcon } from "../../assets";
+import { megaSpeakerIcon } from "../assets";
 import { TiArrowRight } from "react-icons/ti";
 
 function Headline({ message, pageTo }) {

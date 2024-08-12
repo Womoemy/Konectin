@@ -1,25 +1,21 @@
 import React, { useState } from "react";
-import { FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { useTemplateContext } from "../../../middleware/resume";
+import { NavLink } from "react-router-dom";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 function Option({ item }) {
-  const { templateData } = useTemplateContext();
   const [active, setActive] = useState(false);
 
   return (
     <React.Fragment>
-      <li
+      <NavLink
         className="relative cursor-pointer py-3 px-4 hover:border-r-[3px] border-primary-600 hover:bg-gradient-to-r from-transparent to-primary-200"
         key={item.route}
         onClick={() => setActive(!active)}
+        to={item.options ? "#" : `/services/resume/builder${item.route}`}
       >
-        <Link
-          to={item.options ? "#" : `/services/resume/builder${item.route}`}
-          className="flex items-center"
-        >
+        <div className="flex items-center">
           <img src={item.icon} alt={item.label} className="min-w-[24px]" />
-          <span className="ml-4  whitespace-nowrap text-sm hover:text-primary-600 font-semibold ">
+          <span className="ml-4 whitespace-nowrap hover:text-primary-600 font-semibold ">
             {item.label}
           </span>
           {item.options ? (
@@ -31,9 +27,9 @@ function Option({ item }) {
               )}
             </div>
           ) : null}
-        </Link>
-      </li>
-      {active &&
+        </div>
+      </NavLink>
+      {/* {active &&
         item.options &&
         item.options.map((option) => {
           return (
@@ -57,7 +53,7 @@ function Option({ item }) {
               </div>
             </div>
           );
-        })}
+        })} */}
     </React.Fragment>
   );
 }
