@@ -90,7 +90,7 @@ function CoverLetter() {
         <Routes>
           <Route
             element={
-              <div className="flex justify-center items-center flex-col w-full lg:w-3/4 px-12 lg:px-32 text-center pb-16">
+              <div className="flex justify-center items-center flex-col w-full lg:w-3/4 px-12 lg:px-32 text-center py-16">
                 <div
                   onClick={() => navigate(-1)}
                   className="self-start flex items-center gap-2 text-sm cursor-pointer"
