@@ -24,7 +24,7 @@ const Bio = ({ data, onInputChange }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (data.bio.length <= 30) {
@@ -32,8 +32,8 @@ const Bio = ({ data, onInputChange }) => {
       return;
     }
 
-    onSectionComplete(data, 6);
-    navigate("/services/resume/builder/add_information");
+    await onSectionComplete(data, 6);
+    navigate("/services/resume/builder/add-information");
   };
 
   return (
@@ -65,7 +65,7 @@ const Bio = ({ data, onInputChange }) => {
               />
             </div>
           </div>
-          <div className="h-full relative">
+          <div className="h-full relative min-h-[50vh]">
             {loading && (
               <div className="absolute w-full bg-white py-6 px-8">
                 <div className="animate-pulse space-y-1">
@@ -139,7 +139,7 @@ const Bio = ({ data, onInputChange }) => {
       </div>
 
       <Link
-        to="/services/resume/builder/add_information"
+        to="/services/resume/builder/add-information/awards"
         className="text-secondary-600 text-sm font-extralight tracking-[0.02rem] underline mx-auto mt-8"
       >
         Skip this step

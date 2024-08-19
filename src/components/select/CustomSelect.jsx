@@ -34,7 +34,7 @@ const CustomSelect = ({ options, value, onChange, showSearch }) => {
       <div className="relative">
         <label
           htmlFor="customInput"
-          className="input-container block cursor-text"
+          className="input-container !mb-0 flex cursor-text"
         >
           <input
             type="text"
@@ -69,7 +69,7 @@ const CustomSelect = ({ options, value, onChange, showSearch }) => {
         </label>
 
         {isOpen && filteredOptions.length >= 1 && (
-          <ul className="absolute z-50 -mt-6 py-2 w-full max-h-[300px] overflow-auto no-scrollbar bg-white border border-gray-300 rounded-md shadow-lg duration-300">
+          <ul className="absolute z-50 py-2 w-full max-h-[200px] overflow-auto no-scrollbar bg-white border border-gray-300 rounded-md shadow-lg duration-300">
             {filteredOptions.map((option) => (
               <li
                 key={option}

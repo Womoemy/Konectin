@@ -38,8 +38,9 @@ export const modernTemplates = [
   },
   {
     element: TemplateFour,
-    name: "Pio",
-    about: "",
+    name: "Pioneer",
+    about:
+      "When you know you're a natural fit, the conversation is warm, you get that fuzzy feeling, and every fiber of your being says you're perfect for this job, there's no better design than Placard",
     themeColors: ["white"],
     id: "modern_4",
   },
@@ -58,7 +59,7 @@ export const artisticTemplates = [
     element: TemplateOneA,
     name: "",
     about: "",
-    themeColors: ["", ""],
+    themeColors: ["yellow", "blue"],
     id: "artistic_1",
   },
   // {

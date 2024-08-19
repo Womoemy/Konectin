@@ -16,6 +16,8 @@ function ResponsibilityField({ data, handleInputChange }) {
     handleInputChange("workDesc", content);
     if (content.length <= 29) {
       setErrorMessage("A good work description must be at least 30 words");
+    } else {
+      setErrorMessage("");
     }
   };
 
@@ -36,7 +38,7 @@ function ResponsibilityField({ data, handleInputChange }) {
             apiKey={editorKey}
             onInit={(_, editor) => {
               editorRef.current = editor;
-              handleInputChange("workDesc", data.workDesc);
+              handleInputChange("workDesc", data?.workDesc);
               setLoading(false);
             }}
             init={{
@@ -56,7 +58,7 @@ function ResponsibilityField({ data, handleInputChange }) {
               placeholder: "Work Responsibilities/Functions",
             }}
             initialValue=""
-            value={data.workDesc ? data.workDesc : ""}
+            value={data?.workDesc ? data.workDesc : ""}
             onEditorChange={handleEditorChange}
           />
 

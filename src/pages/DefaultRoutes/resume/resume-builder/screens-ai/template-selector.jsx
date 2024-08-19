@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TemplateOption from "./template-option";
 import { TypeAnimation } from "react-type-animation";
+import { artisticTemplates, modernTemplates } from "../resume-templates/data";
 
 const TemplateSelector = ({ data }) => {
   const navigate = useNavigate();
@@ -33,8 +34,11 @@ const TemplateSelector = ({ data }) => {
       </div>
 
       <section className="flex flex-col w-full items-center gap-10 mt-3 lg:mt-6 lg:mx-16 pb-12">
-        <TemplateOption sectionName="modern" />
-        <TemplateOption sectionName="artistic" />
+        <TemplateOption sectionName="modern" sectionType={modernTemplates} />
+        <TemplateOption
+          sectionName="artistic"
+          sectionType={artisticTemplates}
+        />
       </section>
     </>
   );

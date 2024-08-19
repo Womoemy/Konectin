@@ -38,6 +38,10 @@ const ResumeUpload = lazy(() =>
   import("./pages/DefaultRoutes/resume/resume-builder/screen-upload")
 );
 
+const ResumeReview = lazy(() =>
+  import("./pages/DefaultRoutes/resume/resume-review")
+);
+
 const Landing = lazy(() => import("./pages/DefaultRoutes/landing"));
 const Internship = lazy(() => import("./pages/DefaultRoutes/internship"));
 const About = lazy(() => import("./pages/DefaultRoutes/about"));
@@ -112,6 +116,11 @@ function App() {
               element={<HireTalent />}
             />
             <Route path="/services/resume" element={<ResumeBuilder />} />
+
+            <Route
+              path="/services/resume/review/*"
+              element={<ResumeReview />}
+            />
             <Route path="/terms" element={<TermsAndCondition />} />
             <Route path="/policy" element={<PrivacyPolicy />} />
             <Route path="/faq" element={<Faq />} />
@@ -135,13 +144,6 @@ function App() {
           </Route>
 
           {/* Resume Builder Routes */}
-          <Route element={<ResumeRoutes />}>
-            <Route
-              path="/services/resume/options"
-              element={<ResumeOptions />}
-            />
-          </Route>
-
           <Route
             element={
               <TemplateProvider>
@@ -153,10 +155,15 @@ function App() {
               </TemplateProvider>
             }
           >
+            <Route
+              path="/services/resume/options"
+              element={<ResumeOptions />}
+            />
             <Route path="/services/cover-letter/*" element={<Coverletter />} />
             <Route path="/services/resume/ai/*" element={<AIStarter />} />
             <Route path="/services/resume/builder/*" element={<Builder />} />
           </Route>
+
           <Route path="/services/resume/upload/*" element={<ResumeUpload />} />
         </Route>
       </Routes>

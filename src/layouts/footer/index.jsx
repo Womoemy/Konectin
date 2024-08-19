@@ -19,13 +19,13 @@ function Footer() {
             </Link>
 
             <nav className="flex flex-col gap-6 text-white text-sm">
-              <a href="tel:+2347061855058" className="flex gap-4 items-center">
+              <a href="tel:+13024645558" className="flex gap-4 items-center">
                 <img
                   className="w-6 h-4 brightness-[500%]"
                   src={contactIcon}
                   alt="Phone call"
                 />
-                <span>+234 706 185 5058</span>
+                <span>+1 302 464 5558</span>
               </a>
               <a
                 href="mailto:info@konectin.org"

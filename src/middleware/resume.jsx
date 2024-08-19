@@ -41,11 +41,22 @@ const useTemplateData = () => {
         profileUrl: "",
         state: "",
         zipCode: "",
+        expertise: {
+          id: 0,
+          name: "",
+          text: "",
+        },
       },
       theme: {
         color: "blue",
-        fontSize: "",
-        fontStyle: "",
+        font: {
+          family: "",
+          size: {
+            heading: "",
+            paragraph: "",
+          },
+          weight: "normal",
+        },
       },
       image: {
         show: false,
@@ -56,9 +67,15 @@ const useTemplateData = () => {
       jobExperience: [],
       education: [],
       skills: [],
-      additionalInformation: {},
+      additionalInformation: {
+        awards: [],
+        certificates: [],
+        hobbies: [],
+        languages: [],
+        projects: [],
+      },
       bio: "",
-      selectedTemplate: "",
+      selectedTemplate: { name: "", id: "", themeSet: [] },
       currentStage: 0,
     }
   );

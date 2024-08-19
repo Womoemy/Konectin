@@ -1,25 +1,26 @@
-import { useState } from "react";
 import { BsDroplet, BsFonts } from "react-icons/bs";
 import { CgFontHeight } from "react-icons/cg";
 import { useTemplateContext } from "../../../middleware/resume";
 
 const StyleResume = () => {
-  const { onInputChange } = useTemplateContext();
-  const [selectedFont, setSelectedFont] = useState("Arial");
+  const { setTemplateData, templateData, onInputChange } = useTemplateContext();
   // const [selectedSize, setSelectedSize] = useState("medium");
-  const [selectedColor, setSelectedColor] = useState("");
 
   const fontOptions = ["Arial", "Helvetica", "Times New Roman", "Courier New"];
   const sizeOptions = { min: 14, max: 18 };
-  const colorOptions = ["red", "blue", "green", "yellow", "orange", "purple"];
 
   const handleFontChange = (event) => {
-    setSelectedFont(event.target.value);
-    onInputChange({
-      section: "theme",
-      subsection: "font",
-      values: event.target.value,
-    });
+    console.log(event.target.value);
+    setTemplateData((prev) => ({
+      ...prev,
+      theme: {
+        ...prev.theme,
+        font: {
+          ...prev.theme.font,
+          family: event.target.value,
+        },
+      },
+    }));
   };
 
   // const handleSizeChange = (size) => {
@@ -27,7 +28,6 @@ const StyleResume = () => {
   // };
 
   const handleColorChange = (color) => {
-    setSelectedColor(color);
     onInputChange({ section: "theme", subsection: "color", values: color });
   };
 
@@ -43,7 +43,7 @@ const StyleResume = () => {
               </label>
             </div>
             <select
-              value={selectedFont}
+              value={templateData.theme.font.family}
               onChange={handleFontChange}
               className="px-2 py-3 rounded text-xs border border-gray-300 focus:outline-none focus:ring focus:ring-indigo-200"
             >
@@ -93,11 +93,13 @@ const StyleResume = () => {
               </label>
             </div>
             <div className="flex space-x-2">
-              {colorOptions.map((color) => (
+              {templateData.selectedTemplate.themeSet.map((color) => (
                 <button
                   key={color}
                   className={`${
-                    selectedColor === color ? "ring ring-indigo-200" : ""
+                    templateData?.theme.color === color
+                      ? "ring ring-indigo-200"
+                      : ""
                   } w-6 h-6 rounded-full border border-gray-300 focus:outline-none focus:ring focus:ring-indigo-200 `}
                   style={{ backgroundColor: color }}
                   onClick={() => handleColorChange(color)}

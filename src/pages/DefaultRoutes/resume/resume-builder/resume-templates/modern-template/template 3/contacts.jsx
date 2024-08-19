@@ -16,6 +16,9 @@ function Contacts({ data }) {
         </p>
 
         <p>{data.email && <a href={`mailto:${data.email}`}>{data.email}</a>}</p>
+        <p>
+          {data.profileUrl && <a href={data.profileUrl}>{data.profileUrl}</a>}
+        </p>
 
         <p>
           {data.phoneNumber && (

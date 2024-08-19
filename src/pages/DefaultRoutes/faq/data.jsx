@@ -1,5 +1,5 @@
 import * as AiIcons from "react-icons/ai";
-import * as GiIcons from "react-icons/gi";
+// import * as GiIcons from "react-icons/gi";
 import * as FaIcons from "react-icons/fa";
 
 export const linkHead = [
@@ -11,14 +11,14 @@ export const linkHead = [
     name: "Products and Services",
     icon: <AiIcons.AiOutlineCodeSandbox />,
   },
-  {
-    name: "Target Audience",
-    icon: <GiIcons.GiHumanTarget />,
-  },
-  {
-    name: "Work Culture",
-    icon: <FaIcons.FaHandHoldingHeart />,
-  },
+  // {
+  //   name: "Target Audience",
+  //   icon: <GiIcons.GiHumanTarget />,
+  // },
+  // {
+  //   name: "Work Culture",
+  //   icon: <FaIcons.FaHandHoldingHeart />,
+  // },
   {
     name: "Community & Social",
     icon: <FaIcons.FaPeopleCarry />,
@@ -64,21 +64,28 @@ export const FAQ = [
       head: "AI Resume Builder",
       answer:
         "A cutting-edge tool that uses artificial intelligence to help job seekers create compelling and professional resumes that meet Applicant Tracking System (ATS) standards.",
-      link: "/resume",
+      link: "/services/resume",
     },
     {
       question: "Resume Review and Edit",
       head: "Professional Resume Review and Edit Services",
       answer:
         "A service where our expert team offers personalized resume review and editing, ensuring job seekers present themselves in the best possible light.",
-      link: "/resume#start",
+      link: "/services/resume/review",
     },
     {
       question: "Professionalism Blog",
       head: "Konectin Community Blog",
       answer:
         "An upcoming blog that will provide valuable information and tips to enhance candidates' professionalism and job readiness.",
-      coming: true,
+      link: "/blog/all",
+    },
+    {
+      question: "Konectin Internship Program",
+      head: "Internship Program",
+      answer:
+        "A program that facilitates direct matching of candidates with partnered companies, offering valuable internship opportunities to build experience.",
+      link: "/services/internship",
     },
     {
       question: "Job Search Platform",
@@ -88,22 +95,22 @@ export const FAQ = [
       coming: true,
     },
   ],
-  [
-    {
-      question: "Who are the primary users of Konectin Inc's services?",
-      head: "Target Users",
-      answer:
-        "Our primary users are African job seekers, undergraduate students and business owners. We also serve businesses, organizations, and employers looking for talented and motivated students who can align their work experiences with their academic schedules and career goals.",
-    },
-  ],
-  [
-    {
-      question: "What kind of work culture does Konectin Inc promote?",
-      head: "Work Culture",
-      answer:
-        "Konectin Inc operates remotely and uses Agile methodologies. We have a weekly sprint lap, with sprint reviews conducted every Sunday from 7pm-8pm. Our work culture also includes a Kudos Friday, where we appreciate our employees.",
-    },
-  ],
+  // [
+  //   {
+  //     question: "Who are the primary users of Konectin Inc's services?",
+  //     head: "Target Users",
+  //     answer:
+  //       "Our primary users are African job seekers, undergraduate students and business owners. We also serve businesses, organizations, and employers looking for talented and motivated students who can align their work experiences with their academic schedules and career goals.",
+  //   },
+  // ],
+  // [
+  //   {
+  //     question: "What kind of work culture does Konectin Inc promote?",
+  //     head: "Work Culture",
+  //     answer:
+  //       "Konectin Inc operates remotely and uses Agile methodologies. We have a weekly sprint lap, with sprint reviews conducted every Sunday from 7pm-8pm. Our work culture also includes a Kudos Friday, where we appreciate our employees.",
+  //   },
+  // ],
   [
     {
       question: "How can I become a part of the Konectin Inc community?",

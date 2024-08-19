@@ -1,6 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { FaRegEye } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import BasicInformation from "./basicinfo";
 import EmploymentExperience from "./experience";
@@ -8,6 +15,7 @@ import Education from "./education";
 import Skills from "./skills";
 import Bio from "./bio";
 import Preview from "./preview";
+import AdditionInformation from "./additon_information";
 
 import { useAuthContext } from "../../../../../middleware/auth";
 import { useTemplateContext } from "../../../../../middleware/resume";
@@ -17,15 +25,17 @@ import WelcomeWalkthrough from "../../../../../components/resume/walkthrough/wel
 import TipsWalkthrough from "../../../../../components/resume/walkthrough/tipsWalkthrough";
 import DownloadWalkthrough from "../../../../../components/resume/walkthrough/downloadWalkthrough";
 import FinishWalkthrough from "../../../../../components/resume/walkthrough/finishWalkthrough";
-import AdditionInformation from "./additon_information";
+import PreviewTemplate from "../../../../../components/resume/resumeRightSide/previewTemplate";
 
 function Builder() {
-  const { templateData, onInputChange, setTemplateData } = useTemplateContext();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const { user } = useAuthContext();
+  const [preview, setPreview] = useState(false);
 
   const { currentModule } = useWalkthrough();
 
-  const { user } = useAuthContext();
-  const navigate = useNavigate();
+  const { templateData, onInputChange, setTemplateData } = useTemplateContext();
 
   useEffect(() => {
     if (!templateData || user === null) {
@@ -48,12 +58,24 @@ function Builder() {
           phoneNumber: "",
           phoneCode: "",
           profession: "",
+          profileUrl: "",
           state: "",
           zipCode: "",
         },
         theme: {
           color: "blue",
-          font: "",
+          font: {
+            family: "",
+            size: {
+              heading: "",
+              paragraph: "",
+            },
+            weight: "normal",
+          },
+        },
+        image: {
+          show: false,
+          value: "",
         },
         currentEditedJob: 0,
         currentEditedEducation: 0,
@@ -62,7 +84,7 @@ function Builder() {
         skills: [],
         additionalInformation: {},
         bio: "",
-        selectedTemplate: "",
+        selectedTemplate: { name: "", id: "", themeSet: [] },
         currentStage: 0,
       });
       navigate("/services/resume/ai/template-selector");
@@ -92,7 +114,7 @@ function Builder() {
     },
     {
       element: AdditionInformation,
-      link: "/add_information/*",
+      link: "/add-information/*",
     },
     {
       element: Preview,
@@ -120,6 +142,17 @@ function Builder() {
 
   return (
     <div className="px-4 sm:px-6 md:px-0 md:w-[calc(90%_-_88px)] md:mx-auto">
+      {pathname !== "/services/resume/builder/preview" && (
+        <div className="relative md:hidden">
+          <div
+            className="absolute cursor-pointer right-0 -top-4 bg-black w-9 h-9 rounded-full flex items-center justify-center"
+            onClick={() => setPreview(true)}
+          >
+            <FaRegEye className="text-white" />
+          </div>
+          {preview && <PreviewTemplate setPreview={setPreview} />}
+        </div>
+      )}
       {currentModule === 0 && <WelcomeWalkthrough />}
       {currentModule === 3 && <TipsWalkthrough />}
       {currentModule === 5 && <DownloadWalkthrough />}
@@ -140,6 +173,8 @@ function Builder() {
             />
           );
         })}
+
+        <Route path="*" element={<Navigate to="/services/resume/builder" />} />
       </Routes>
     </div>
   );

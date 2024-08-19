@@ -20,6 +20,7 @@ function EducationOption({ title, link, image }) {
               city: "",
               country: "",
               degree: "",
+              course: "",
               startMonth: "",
               startYear: "",
               schoolName: "",
@@ -28,16 +29,29 @@ function EducationOption({ title, link, image }) {
               endYear: "",
               type: "college",
             }
-          : {
-              awards: [{ name: "" }],
+          : link === "high-school"
+          ? {
               city: "",
               country: "",
               endMonth: "",
               schoolName: "",
               state: "",
-              relevantCourses: [{ name: "" }],
               endYear: "",
               type: "high-school",
+              qualifications: [],
+            }
+          : {
+              name: "",
+              instituteType: "",
+              course: "",
+              city: "",
+              state: "",
+              country: "",
+              startMonth: "",
+              startYear: "",
+              endMonth: "",
+              endYear: "",
+              type: "institution",
             },
       ],
       currentEditedEducation: prev.currentEditedEducation + 1,

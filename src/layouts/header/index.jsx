@@ -10,17 +10,17 @@ import { konectinLogo } from "../../assets";
 import "./header.css";
 import { useAuthContext } from "../../middleware/auth";
 import InternAnimation from "../../utils/intern-animation";
-import Headline from "./headline";
+import Headline from "../../components/headline";
 import ProfileBar from "./profileBar";
 import MobileHeader from "./mobileView";
 
 function Header({ post }) {
   const { user } = useAuthContext();
 
-  const [offset, setOffset] = useState({
-    prevScrollpos: window.scrollY,
-    visible: true,
-  });
+  // const [offset, setOffset] = useState({
+  //   prevScrollpos: window.scrollY,
+  //   visible: true,
+  // });
 
   const [isOpen, setIsOpen] = useState(false);
   const links = [
@@ -47,7 +47,7 @@ function Header({ post }) {
           icon: PiIcons.PiUsersLight,
           links: [
             {
-              name: "Konectin Internship Partnership",
+              name: "Konectin Partnership",
               link: "/internship/hire-talent",
             },
           ],
@@ -60,24 +60,24 @@ function Header({ post }) {
 
   const { pathname } = useLocation();
 
-  const handleScroll = () => {
-    const { prevScrollpos } = offset;
-    const currentScrollPos = window.scrollY;
-    const visible = prevScrollpos > currentScrollPos;
-    const darken = visible && currentScrollPos >= 50;
+  // const handleScroll = () => {
+  //   const { prevScrollpos } = offset;
+  //   const currentScrollPos = window.scrollY;
+  //   const visible = prevScrollpos > currentScrollPos;
+  //   const darken = visible && currentScrollPos >= 50;
 
-    setOffset({
-      prevScrollpos: currentScrollPos,
-      visible,
-      darken,
-    });
-  };
+  //   setOffset({
+  //     prevScrollpos: currentScrollPos,
+  //     visible,
+  //     darken,
+  //   });
+  // };
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
 
-  window.addEventListener("scroll", handleScroll);
+  // window.addEventListener("scroll", handleScroll);
 
   return (
     <header

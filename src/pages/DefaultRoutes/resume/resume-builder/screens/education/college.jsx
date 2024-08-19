@@ -18,6 +18,7 @@ function CollegeForm() {
 
   const schoolRef = useRef(null);
   const degreeRef = useRef(null);
+  const courseRef = useRef(null);
   const startMonthRef = useRef(null);
   const startYearRef = useRef(null);
   const endMonthRef = useRef(null);
@@ -26,6 +27,7 @@ function CollegeForm() {
   const [allErrMsg, setAllErrMsg] = useState([
     schoolRef,
     degreeRef,
+    courseRef,
     startMonthRef,
     startYearRef,
     endMonthRef,
@@ -54,11 +56,18 @@ function CollegeForm() {
 
   useEffect(() => {
     if (education.current) {
-      setAllErrMsg([schoolRef, degreeRef, startMonthRef, startYearRef]);
+      setAllErrMsg([
+        schoolRef,
+        degreeRef,
+        courseRef,
+        startMonthRef,
+        startYearRef,
+      ]);
     } else {
       setAllErrMsg([
         schoolRef,
         degreeRef,
+        courseRef,
         startMonthRef,
         startYearRef,
         endMonthRef,
@@ -145,10 +154,10 @@ function CollegeForm() {
     navigate("/services/resume/builder/education/");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    onSectionComplete(templateData, 3);
+    await onSectionComplete(templateData, 4);
 
     const formHolder = Object.keys(education);
 
@@ -162,6 +171,7 @@ function CollegeForm() {
           verifyInput(education[holder], errorHolder, holder);
           break;
         case "current":
+        case "type":
           break;
         case "startMonth":
         case "startYear":
@@ -197,6 +207,7 @@ function CollegeForm() {
     if (
       education.schoolName !== "" &&
       education.degree !== "" &&
+      education.course !== "" &&
       education.country &&
       (education.startMonth !== "" || education.startYear !== "") &&
       (education.current ||
@@ -210,7 +221,7 @@ function CollegeForm() {
   return (
     <section className="max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row items-start justify-between self-center  gap-10">
-        <div className="w-full mx-auto ">
+        <div className="w-full mx-auto">
           <h2 className="text-xl md:text-3xl leading-tight font-semibold md:leading-snug">
             University or college details
           </h2>
@@ -239,24 +250,6 @@ function CollegeForm() {
                 ></label>
               </div>
 
-              <div className="flex flex-col">
-                <input
-                  className="input-container"
-                  value={education.degree}
-                  name="degree"
-                  id="degree"
-                  type="text"
-                  onChange={(e) => handleChange(e.target.name, e.target.value)}
-                  onInput={(e) => handleChange(e.target.name, e.target.value)}
-                  placeholder="Degree"
-                />
-                <label
-                  className="-mt-5 text-xs pl-4 text-error-500 hidden"
-                  htmlFor="degree"
-                  ref={degreeRef}
-                ></label>
-              </div>
-
               <div className="flex gap-4">
                 {/* Country  */}
                 <CountryInput
@@ -281,6 +274,42 @@ function CollegeForm() {
                 />
               </div>
 
+              <div className="flex flex-col">
+                <input
+                  className="input-container"
+                  value={education.degree}
+                  name="course"
+                  id="course"
+                  type="text"
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  onInput={(e) => handleChange(e.target.name, e.target.value)}
+                  placeholder="Course of Study"
+                />
+                <label
+                  className="-mt-5 text-xs pl-4 text-error-500 hidden"
+                  htmlFor="course"
+                  ref={courseRef}
+                ></label>
+              </div>
+
+              <div className="flex flex-col">
+                <input
+                  className="input-container"
+                  value={education.degree}
+                  name="degree"
+                  id="degree"
+                  type="text"
+                  onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  onInput={(e) => handleChange(e.target.name, e.target.value)}
+                  placeholder="Degree obtained"
+                />
+                <label
+                  className="-mt-5 text-xs pl-4 text-error-500 hidden"
+                  htmlFor="degree"
+                  ref={degreeRef}
+                ></label>
+              </div>
+
               <div className="flex gap-4">
                 <div className="flex flex-col w-full">
                   <DatePicker
@@ -291,7 +320,7 @@ function CollegeForm() {
                     id="startMonth"
                     placeholder={
                       education.startMonth === ""
-                        ? "Start Month"
+                        ? "Study Start Month"
                         : education.startMonth
                     }
                     value={
@@ -322,7 +351,7 @@ function CollegeForm() {
                     id="startYear"
                     placeholder={
                       education.startYear === ""
-                        ? "Start Year"
+                        ? "Study Start Year"
                         : education.startYear
                     }
                     value={

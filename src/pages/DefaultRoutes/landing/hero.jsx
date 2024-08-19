@@ -113,7 +113,7 @@ function Hero() {
                 <motion.img
                   src={item.src}
                   alt="Hero"
-                  className="h-[550px] aspect-[3/4]"
+                  className="aspect-auto"
                   width={1920}
                   height={1080}
                 />

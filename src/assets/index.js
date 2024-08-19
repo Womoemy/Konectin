@@ -47,6 +47,7 @@ import completedCheck from "./icons/completed-check.svg";
 import halfLoading from "./icons/half-loading.svg";
 import arrowOut from "./icons/arrow-out.svg";
 import arrowRight from "./icons/arrow-right.svg";
+import support from "./icons/support.svg";
 
 // socials
 import SFacebook from "./icons/socials/Facebook.svg";
@@ -160,6 +161,7 @@ import AboutHeroImage from "./images/about hero.png";
 import MustafaIcon from "./images/team/mustafa.png";
 import DavidIcon from "./images/team/david.png";
 import MichaelIcon from "./images/team/michael.png";
+import FaithIcon from "./images/team/faith.png";
 import AfolabiIcon from "./images/team/afolabi.png";
 import AnonymousIcon from "./images/team/anonymous.png";
 import FounderIcon from "./images/team/founder.jpg";
@@ -186,6 +188,11 @@ import person1 from "./images/person1.png";
 import person2 from "./images/person2.png";
 import person3 from "./images/person3.png";
 import person4 from "./images/person4.png";
+
+// resume review section
+import reviewHero from "./images/Illustration.png";
+import processHero from "./images/processHero.png";
+import pricingCardBg from "./images/pricing-card-bg.png";
 
 export {
   // Icons
@@ -233,6 +240,7 @@ export {
   halfLoading,
   arrowOut,
   arrowRight,
+  support,
 
   // Sign Images
   signImage,
@@ -338,6 +346,7 @@ export {
   MustafaIcon,
   DavidIcon,
   MichaelIcon,
+  FaithIcon,
   AfolabiIcon,
   FounderIcon,
   ContactUSImage,
@@ -376,4 +385,9 @@ export {
   plusWhite,
   closeBlack,
   closeWhite,
+
+  // resume review section
+  reviewHero,
+  processHero,
+  pricingCardBg,
 };
