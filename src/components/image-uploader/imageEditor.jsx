@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactCrop, {
   centerCrop,
   convertToPixelCrop,
@@ -12,6 +12,7 @@ const MIN_DIMENSION = 150;
 
 function ImageEditor({ updateAvatar }) {
   const imgRef = useRef(null);
+  const imgUploader = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
   const [crop, setCrop] = useState();
@@ -57,6 +58,12 @@ function ImageEditor({ updateAvatar }) {
     setCrop(centeredCrop);
   };
 
+  useEffect(() => {
+    if (imgUploader.current) {
+      imgUploader.current.click();
+    }
+  }, []);
+
   return (
     <>
       <label className="block mb-3 w-fit">
@@ -64,6 +71,7 @@ function ImageEditor({ updateAvatar }) {
         <input
           type="file"
           accept="image/*"
+          ref={imgUploader}
           onChange={onSelectFile}
           className="block w-full text-sm text-slate-500 file:mr-4 file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-gray-700 file:text-sky-300 hover:file:bg-gray-600"
         />
@@ -73,7 +81,7 @@ function ImageEditor({ updateAvatar }) {
         <div className="flex flex-col items-center">
           <ReactCrop
             crop={crop}
-            onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
+            onChange={(_, percentCrop) => setCrop(percentCrop)}
             circularCrop
             keepSelection
             aspect={ASPECT_RATIO}
@@ -83,7 +91,7 @@ function ImageEditor({ updateAvatar }) {
               ref={imgRef}
               src={imgSrc}
               alt="Upload"
-              style={{ maxHeight: "50vh" }}
+              className="aspect-auto w-full h-full !max-h-[40vh]"
               onLoad={onImageLoad}
             />
           </ReactCrop>
